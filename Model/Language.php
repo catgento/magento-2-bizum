@@ -57,7 +57,7 @@ class Language
     /**
      * @return string
      */
-    public function getRedsysLanguage()
+    public function getBizumLanguage()
     {
         $languages = $this->scopeConfig->getValue(ConfigInterface::XML_PATH_LANGUAGES, ScopeInterface::SCOPE_STORE);
         if ($languages == "0") {

@@ -88,7 +88,7 @@ class BizumFactory
     /**
      * @return float
      */
-    private function getRedsysAmount()
+    private function getBizumAmount()
     {
         $transaction_amount = number_format($this->getOrder()->getBaseGrandTotal(), 2, '', '');
         return (float)$transaction_amount;
@@ -97,7 +97,7 @@ class BizumFactory
     /**
      * @return string
      */
-    private function getRedsysOrderNumber()
+    private function getBizumOrderNumber()
     {
         $orderId = $this->getOrder()->getIncrementId();
         return strval($orderId);
@@ -106,7 +106,7 @@ class BizumFactory
     /**
      * @return string
      */
-    private function getRedsysProducts()
+    private function getBizumProducts()
     {
         $order = $this->getOrder();
         $products = '';
@@ -121,7 +121,7 @@ class BizumFactory
     /**
      * @return string
      */
-    private function getRedsysCustomer()
+    private function getBizumCustomer()
     {
         $order = $this->getOrder();
         return $order->getCustomerFirstname()." ".$order->getCustomerLastname()."/ ".__("Email: ").$order->getCustomerEmail();
@@ -144,10 +144,10 @@ class BizumFactory
         $KOcommerce_url = $this->url->getUrl('bizum/koresult', ['order_id' => $orderId]);
         $OKcommerce_url = $this->url->getUrl('bizum/okresult', ['order_id' => $orderId]);
 
-        // Setting Parameters to Redsys
+        // Setting Parameters to Bizum
         $bizumObj = new BizumApi();
-        $bizumObj->setParameter("DS_MERCHANT_AMOUNT", $this->getRedsysAmount());
-        $bizumObj->setParameter("DS_MERCHANT_ORDER", $this->getRedsysOrderNumber());
+        $bizumObj->setParameter("DS_MERCHANT_AMOUNT", $this->getBizumAmount());
+        $bizumObj->setParameter("DS_MERCHANT_ORDER", $this->getBizumOrderNumber());
         $bizumObj->setParameter("DS_MERCHANT_MERCHANTCODE", $commerce_num);
         $bizumObj->setParameter("DS_MERCHANT_CURRENCY", $this->helper->getCurrency($this->getOrder()));
         $bizumObj->setParameter("DS_MERCHANT_TRANSACTIONTYPE", $trans);
@@ -156,8 +156,8 @@ class BizumFactory
         $bizumObj->setParameter("DS_MERCHANT_URLOK", $OKcommerce_url);
         $bizumObj->setParameter("DS_MERCHANT_URLKO", $KOcommerce_url);
         $bizumObj->setParameter("Ds_Merchant_ConsumerLanguage", $this->helper->getLanguage());
-        $bizumObj->setParameter("Ds_Merchant_ProductDescription", $this->getRedsysProducts());
-        $bizumObj->setParameter("Ds_Merchant_Titular", $this->getRedsysCustomer());
+        $bizumObj->setParameter("Ds_Merchant_ProductDescription", $this->getBizumProducts());
+        $bizumObj->setParameter("Ds_Merchant_Titular", $this->getBizumCustomer());
         $bizumObj->setParameter("Ds_Merchant_MerchantData", sha1($commerce_url));
         $bizumObj->setParameter("Ds_Merchant_MerchantName", $commerce_name);
         $bizumObj->setParameter("Ds_Merchant_PayMethods", ConfigInterface::BIZUM_PAYMETHODS);

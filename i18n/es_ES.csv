@@ -25,7 +25,7 @@
 "The order does not allow an invoice to be created.","El pedido no permite la creación de una factura."
 "We can't save the invoice right now.","No se puede guardar la factura."
 "You can't create an invoice without products.","No se puede crear una factura sin productos."
-"Incorrect response from Redsys.","Respuesta incorrecta desde Redsys."
+"Incorrect response from Bizum.","Respuesta incorrecta desde Bizum."
 "Errors in POST data","Errores en el POST"
 "Amount is diferent","La cantidad es diferente"
 "The order no longer exists.","El pedido no existe."
