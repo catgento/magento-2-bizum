@@ -25,7 +25,7 @@ class Redirect extends Template
     /**
      * @var BizumFactory
      */
-    protected $BizumFactory;
+    protected $bizumFactory;
 
     /**
      * @var BizumApi
@@ -36,17 +36,17 @@ class Redirect extends Template
      * Redirect constructor.
      * @param Context $context
      * @param ScopeConfigInterface $scopeConfig
-     * @param BizumFactory $BizumFactory
+     * @param BizumFactory $bizumFactory
      * @param array $data
      */
     public function __construct(
         Context $context,
         ScopeConfigInterface $scopeConfig,
-        BizumFactory $BizumFactory,
+        BizumFactory $bizumFactory,
         array $data = []
     ) {
         $this->scopeConfig = $scopeConfig;
-        $this->BizumFactory = $BizumFactory;
+        $this->bizumFactory = $bizumFactory;
         parent::__construct($context, $data);
     }
 
@@ -74,7 +74,7 @@ class Redirect extends Template
     private function getBizumObject()
     {
         if (is_null($this->bizumObj)) {
-            $this->bizumObj = $this->BizumFactory->createBizumObject();
+            $this->bizumObj = $this->bizumFactory->createBizumObject();
         }
         return $this->bizumObj;
     }
