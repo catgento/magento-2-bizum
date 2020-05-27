@@ -5,7 +5,7 @@ namespace Catgento\Bizum\Model;
 /**
  * Interface ConfigInterface
  */
-interface ConfigInterface 
+interface ConfigInterface
 {
 
 	const BIZUM_DEVELOPMENT_ENVIRONMENT    = 0;
@@ -14,7 +14,7 @@ interface ConfigInterface
     const BIZUM_DEVELOPMENT_URI            = 'https://sis-t.redsys.es:25443/sis/realizarPago/utf-8';
     const BIZUM_PRODUCTION_URI             = 'https://sis.redsys.es/sis/realizarPago/utf-8';
     const BIZUM_SIGNATURE_VERSION          = 'HMAC_SHA256_V1';
-    const BIZUM_PAYMETHODS                 = 'C';
+    const BIZUM_PAYMETHODS                 = 'z';
     const BIZUM_DEFAULT_LANGUAGE           = '002';
     const BIZUM_DEFAULT_CURRENCY           = '978';
 
