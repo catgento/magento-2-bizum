@@ -30,6 +30,7 @@ interface ConfigInterface
     const XML_PATH_AUTOINVOICE              = 'payment/bizum/autoinvoice';
     const XML_PATH_SENDINVOICE              = 'payment/bizum/sendinvoice';
     const XML_PATH_RECOVERY_CART            = 'payment/bizum/recovery_cart';
+    const XML_PATH_CANCEL_PENDING_ORDERS    = 'payment/bizum/cancel_pending_orders';
     const XML_PATH_DEBUG                    = 'payment/bizum/debug';
     const XML_PATH_ALLOWSPECIFIC            = 'payment/bizum/allowspecific';
     const XML_PATH_SPECIFICCOUNTRY          = 'payment/bizum/specificcountry';
