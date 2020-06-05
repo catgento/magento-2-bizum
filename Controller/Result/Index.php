@@ -20,7 +20,6 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\Order\Email\Sender\OrderSender;
 use Magento\Framework\DB\Transaction;
-use Magento\Sales\Model\Order\Payment\Transaction as PaymentTransaction;
 use Magento\Framework\DB\TransactionFactory;
 use Catgento\Bizum\Helper\Helper;
 use Catgento\Bizum\Logger\Logger;
@@ -251,6 +250,17 @@ class Index extends Action implements CsrfAwareActionInterface, HttpPostActionIn
         $payment->registerCaptureNotification(
             $this->amount/100
         );
+
+        // notify customer
+        $invoice = $payment->getCreatedInvoice();
+        if ($invoice && !$order->getEmailSent() && ConfigInterface::XML_PATH_SENDINVOICE) {
+            $this->orderSender->send($order);
+            $order->addStatusHistoryComment(
+                __('You notified customer about invoice #%1.', $invoice->getIncrementId())
+            )
+                ->setIsCustomerNotified(true)
+                ->save();
+        }
     }
 
     /**
